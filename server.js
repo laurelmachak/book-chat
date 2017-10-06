@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/book-chat');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+app.use(express.static('public'));
 
 
 // add a Model:
@@ -21,14 +22,22 @@ var chats = [
 ];
 */
 
+/*
 app.get('/', function (req, res) {
   res.render('home', {msg: 'welcome to the book chat'});
 });
+*/
 
-app.get('/chat', function (req, res) {
-  Chat.find(function(err, reviews){
+// INDEX
+app.get('/', function (req, res) {
+  Chat.find(function(err, chats){
     res.render('chat-index', {data: chats});
   });
+});
+
+// NEW
+app.get('/chats/new', function (req, res){
+  res.render('chats-new', {});
 });
 
 app.listen(3000, function () {
