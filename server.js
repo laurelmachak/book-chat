@@ -32,6 +32,7 @@ app.get('/', function (req, res) {
 app.get('/', function (req, res) {
   Chat.find(function(err, chats){
     res.render('chat-index', {data: chats});
+    
   });
 });
 
